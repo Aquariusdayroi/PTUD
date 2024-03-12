@@ -1,0 +1,82 @@
+{% extends "index.html" %} {% load static %} {% block css_file%}
+
+<title>AquarTodo</title>
+<link rel="stylesheet" href="{% static 'mytodolist/css/style.css'%}" />
+{% endblock%} {%block content%}
+<div class="div">
+  <div class="div-2">
+    <div class="div-3">
+      <div class="column">
+        <div class="div-4">
+          <div class="div-5">
+            <div class="div-6">Tasks</div>
+            <div class="div-7">
+              <img
+                loading="lazy"
+                srcset="
+                  https://cdn.builder.io/api/v1/image/assets/TEMP/62aa3aeb09a57049f68ce8f67a9c8df721cabe9d125284a8c1a34a234bb51102?apiKey=64a7bb57730c4ad7b0998326b63448dc&width=100   100w,
+                  https://cdn.builder.io/api/v1/image/assets/TEMP/62aa3aeb09a57049f68ce8f67a9c8df721cabe9d125284a8c1a34a234bb51102?apiKey=64a7bb57730c4ad7b0998326b63448dc&width=200   200w,
+                  https://cdn.builder.io/api/v1/image/assets/TEMP/62aa3aeb09a57049f68ce8f67a9c8df721cabe9d125284a8c1a34a234bb51102?apiKey=64a7bb57730c4ad7b0998326b63448dc&width=400   400w,
+                  https://cdn.builder.io/api/v1/image/assets/TEMP/62aa3aeb09a57049f68ce8f67a9c8df721cabe9d125284a8c1a34a234bb51102?apiKey=64a7bb57730c4ad7b0998326b63448dc&width=800   800w,
+                  https://cdn.builder.io/api/v1/image/assets/TEMP/62aa3aeb09a57049f68ce8f67a9c8df721cabe9d125284a8c1a34a234bb51102?apiKey=64a7bb57730c4ad7b0998326b63448dc&width=1200 1200w,
+                  https://cdn.builder.io/api/v1/image/assets/TEMP/62aa3aeb09a57049f68ce8f67a9c8df721cabe9d125284a8c1a34a234bb51102?apiKey=64a7bb57730c4ad7b0998326b63448dc&width=1600 1600w,
+                  https://cdn.builder.io/api/v1/image/assets/TEMP/62aa3aeb09a57049f68ce8f67a9c8df721cabe9d125284a8c1a34a234bb51102?apiKey=64a7bb57730c4ad7b0998326b63448dc&width=2000 2000w,
+                  https://cdn.builder.io/api/v1/image/assets/TEMP/62aa3aeb09a57049f68ce8f67a9c8df721cabe9d125284a8c1a34a234bb51102?apiKey=64a7bb57730c4ad7b0998326b63448dc&
+                "
+                class="img-2"
+              />
+              <div class="div-8">All | Not completed</div>
+            </div>
+          </div>
+          <div class="task-roll" id="taskRoll">
+            {% for note in task_list %} 
+            {% include "mytodolist/includes/checkbox.html" %} {% endfor %}
+            <script>
+              var taskRoll = document.getElementById("taskRoll");
+              taskRoll.scrollTop = taskRoll.scrollHeight;
+            </script>
+          </div>
+
+          {% comment %} input task {% endcomment %}
+          <form method="POST" action="{% url 'post_task' %}">
+            {% csrf_token %}
+            <div class="div-15">
+              <div class="input-container">
+                <input
+                  placeholder="Thêm ở đây"
+                  class="input-field"
+                  type="text"
+                  name="my_input"
+                  id="myInput"
+                />
+                <label for="input-field" class="input-label"></label>
+                <span class="input-highlight"></span>
+              </div>
+              <button type="submit" class="div-17">+ Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="column-2">
+        <div class="div-18">
+          <img
+            loading="lazy"
+            srcset="
+              https://cdn.builder.io/api/v1/image/assets/TEMP/a51ebbca6fc27a3572242e66c43e3fd81b8f3f1103e3e1ccc1dc3c60c56d7e6e?apiKey=64a7bb57730c4ad7b0998326b63448dc&width=100   100w,
+              https://cdn.builder.io/api/v1/image/assets/TEMP/a51ebbca6fc27a3572242e66c43e3fd81b8f3f1103e3e1ccc1dc3c60c56d7e6e?apiKey=64a7bb57730c4ad7b0998326b63448dc&width=200   200w,
+              https://cdn.builder.io/api/v1/image/assets/TEMP/a51ebbca6fc27a3572242e66c43e3fd81b8f3f1103e3e1ccc1dc3c60c56d7e6e?apiKey=64a7bb57730c4ad7b0998326b63448dc&width=400   400w,
+              https://cdn.builder.io/api/v1/image/assets/TEMP/a51ebbca6fc27a3572242e66c43e3fd81b8f3f1103e3e1ccc1dc3c60c56d7e6e?apiKey=64a7bb57730c4ad7b0998326b63448dc&width=800   800w,
+              https://cdn.builder.io/api/v1/image/assets/TEMP/a51ebbca6fc27a3572242e66c43e3fd81b8f3f1103e3e1ccc1dc3c60c56d7e6e?apiKey=64a7bb57730c4ad7b0998326b63448dc&width=1200 1200w,
+              https://cdn.builder.io/api/v1/image/assets/TEMP/a51ebbca6fc27a3572242e66c43e3fd81b8f3f1103e3e1ccc1dc3c60c56d7e6e?apiKey=64a7bb57730c4ad7b0998326b63448dc&width=1600 1600w,
+              https://cdn.builder.io/api/v1/image/assets/TEMP/a51ebbca6fc27a3572242e66c43e3fd81b8f3f1103e3e1ccc1dc3c60c56d7e6e?apiKey=64a7bb57730c4ad7b0998326b63448dc&width=2000 2000w,
+              https://cdn.builder.io/api/v1/image/assets/TEMP/a51ebbca6fc27a3572242e66c43e3fd81b8f3f1103e3e1ccc1dc3c60c56d7e6e?apiKey=64a7bb57730c4ad7b0998326b63448dc&
+            "
+            class="img-6"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%endblock%}

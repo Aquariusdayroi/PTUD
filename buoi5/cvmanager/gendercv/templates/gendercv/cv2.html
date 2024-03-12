@@ -1,0 +1,72 @@
+{% extends "index.html" %} {% load static %} {% block css-file %} <link
+rel="stylesheet" href={%static "gendercv/css/stylecv2.css"%} /> {% endblock %}
+{% block content %}
+<div class="div">
+  <div class="div-2">
+    <div class="div-3">
+      <div class="column">
+        <div class="div-4">
+          <div class="div-5">
+            <img src= {{data_cv.image.url}} class="img"/>
+            <div class="div-6">
+              <div class="div-7">{{data_cv.name}}</div>
+              <div class="div-8">{{data_cv.role}}</div>
+            </div>
+          </div>
+          {% comment %} <div class="div-9">{{data_cv.title}}</div> {% endcomment %}
+        </div>
+      </div>
+      <div class="column-2">
+        <div class="div-10">
+          <div class="div-11">Email</div>
+          <div class="div-12">{{data_cv.email}}</div>
+          <div class="div-13">Github</div>
+          <div class="div-14">{{data_cv.github}}</div>
+          <div class="div-15">Phone</div>
+          <div class="div-16">{{data_cv.phone}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="div-17">
+    <div class="div-18">
+      <div class="column-3">
+        <div class="div-19">
+          <div class="header-text">About me</div>
+          {{data_cv.title}}
+        </div>
+        <div class="div-35">
+          <div class="header-text">Honorrs & Awards</div>
+          {{data_cv.honorrs}}
+        </div>
+      </div>
+        <div class="column-4">
+          <div class="div-27">
+            <div class="header-text">Education & Learning</div>
+            <div class="div-29">
+              {{data_cv.school}}
+              <br />
+            </div>
+            <div class="div-30">
+              {{data_cv.specialized}}
+              
+              <br />
+              GPA:{{data_cv.gpa}}
+              
+            </div>
+            <div class="header-text">Skills</div>
+            <div class="div-32">Programmings/Frameworks</div>
+            <div class="div-33">
+              {{data_cv.code}}
+            </div>
+            <div class="div-34">Techniques/Tool</div>
+            <div class="div-35">
+              {{data_cv.tech}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+</div>

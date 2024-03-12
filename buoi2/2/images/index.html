@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id = "root"> 
+        <div class= "flex_container"> 
+            <img src = "Dell_1.jpg"> 
+            <h3> Inspiron</h3>
+            <p> For home and home office</p>
+        </div>
+    </div>
+     <script>
+        const a = [
+                {
+                    name: "Dell_6.jpg",
+                    title: "Inspiriion",
+                    text: "For home and home office",
+                },
+                {
+                    name: "Dell_2.jpg",
+                    title: "XPS Laptops",
+                    text: "For home and home office",
+                },
+                {
+                    name: "Dell_3.jpg",
+                    title: "Alienware",
+                    text: "For home and home office",
+                },
+                {
+                    name: "Dell_4.jpg",
+                    title: "Chromebook",
+                    text: "For home and home office",
+                },
+                {
+                    name: "Dell_5.jpg",
+                    title: "Deals",
+                    text: "For home and home office",
+                }
+                
+            ]
+        let content = document.getElementById("root")    
+        let data = a.map(item => `
+            <div class= "flex_container"> 
+                <img src = ${item.name}> 
+                <h3> ${item.title}</h3>
+                <p> ${item.text}</p>
+            </div>
+        `)
+        content.innerHTML = data.join('')
+     </script>
+</body>
+</html>

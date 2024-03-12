@@ -1,0 +1,38 @@
+
+#root{
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid cornflowerblue;
+    /* padding: 100px; */
+    
+}
+.flex_container {
+    position: relative;
+    text-align: center;
+    border: 0.5px solid rgba(0, 0, 0, 0.048);
+    width: 100%;
+    padding: 0 32px;
+    /* background-image: linear-gradient(to bottom right, white, gray); */
+}
+
+h3 {
+    color: cornflowerblue;
+    text-align: center;
+    font-family: Arial;
+}
+
+p {
+    
+    text-align: center;
+    color:  gray;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    font-weight: bold;
+
+}
+
+img {
+    width: 100%;
+    object-fit: fill;
+
+}

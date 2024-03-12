@@ -1,0 +1,96 @@
+{% extends "index.html" %} {% load static %} {% block css-file%} <link
+rel="stylesheet" href={% static "gendercv\css\form.css" %} /> {% endblock %}
+{%block content %}
+
+<h1>Nhập các thông tin của bạn để tạo cv</h1>
+<div class="form-container">
+  <form
+    class="form"
+    method="post"
+    action="{% url 'submit-form' %}"
+    enctype="multipart/form-data"
+  >
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input required="" name="name" id="name" type="text" value="name" />
+    </div>
+
+    <div class="form-group">
+      <label for="role">Role</label>
+      <input
+        required=""
+        name="role"
+        id="role"
+        type="text"
+        value="{{ data_cv.role }}"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="title">Title</label>
+      <textarea required="" cols="50" rows="10" id="title" name="title">
+{{ data_cv.title }}</textarea
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="honorrs">Honorrs</label>
+      <textarea
+        required=""
+        cols="50"
+        rows="10"
+        id="honorrs"
+        name="honorrs"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input required="" name="email" id="email" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="github">GitHub</label>
+      <input required="" name="github" id="github" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input required="" name="phone" id="phone" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="school">School</label>
+      <input required="" name="school" id="school" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="specialized">Specialized</label>
+      <input required="" name="specialized" id="specialized" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="gpa">GPA</label>
+      <input required="" name="gpa" id="gpa" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="code"> Programmings/Frameworks</label>
+      <input required="" name="code" id="code" type="text" value="" />
+    </div>
+
+    <div class="form-group">
+      <label for="tech">Techniques/Tool</label>
+      <input required="" name="tech" id="tech" type="text" value="" />
+    </div>
+    <div class="form-group">
+      <label for="image">Image</label>
+      <input required="" name="image" id="image" type="file" />
+    </div>
+
+    {% csrf_token %}
+
+    <button type="submit" class="form-submit-btn">Submit</button>
+  </form>
+</div>
+
+{% endblock %}

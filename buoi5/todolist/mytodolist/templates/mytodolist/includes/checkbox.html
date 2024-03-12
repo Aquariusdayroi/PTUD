@@ -1,0 +1,62 @@
+<div class="div-11">
+  <div class="checkbox-wrapper">
+    <input
+      type="checkbox"
+      class="check"
+      id="{{ note.id }}"
+      name="mycheckbox"
+      value="{{ note.id }}"
+      {% if note.done %}checked{% endif %}
+    />
+    <label for="{{ note.id }}" class="label">
+      <svg width="45" height="45" viewBox="0 0 95 95">
+        <rect width="90%" height="90%" stroke="black" fill="none"></rect>
+        <g transform="translate(0,-952.36222)">
+          <path
+            d="m 56,963 c -102,122 6,9 7,9 17,-5 -66,69 -38,52 122,-77 -7,14 18,4 29,-11 45,-43 23,-4"
+            stroke="black"
+            stroke-width="3"
+            fill="none"
+            class="path1"
+          ></path>
+        </g>
+      </svg>
+    </label>
+  </div>
+  <p class="div-12">{{ note.content }}</p>
+</div>
+
+
+
+<script>
+  
+  document.querySelectorAll(".check").forEach(function (checkbox) {
+    var isChecked = checkbox.checked;  
+    var parentDiv = checkbox.closest(".div-11");
+    if (isChecked) {
+        parentDiv.querySelector(".div-12").classList.add("text-through");
+      } else {
+        parentDiv.querySelector(".div-12").classList.remove("text-through");
+      }
+    checkbox.addEventListener("click", function (event) {
+      isChecked = this.checked;
+      var noteId = this.value;
+        
+      // Gửi dữ liệu bằng AJAX
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "{% url 'update_note' %}", true);
+      xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          if (isChecked) {
+            parentDiv.querySelector(".div-12").classList.add("text-through");
+          } else {
+            parentDiv.querySelector(".div-12").classList.remove("text-through");
+          }
+        }
+      };
+      xhr.send(JSON.stringify({ note_id: noteId, done: isChecked }));
+    });
+  });
+</script>
