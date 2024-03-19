@@ -1,0 +1,68 @@
+{% extends "index.html" %} {% load static %} {% block content %}
+<style>
+
+  .cv-list {
+    list-style-type: none; /* Loại bỏ bullet points */
+    padding: 0;
+    background-color: white; /* Nền màu trắng */
+  }
+  .cv-item {
+    margin-bottom: 20px; /* Khoảng cách giữa các items */
+    padding: 10px; /* Padding cho mỗi item */
+    background-color: #f9f9f9; /* Màu nền cho item */
+    border: 1px solid #ddd; /* Viền cho item */
+    border-radius: 5px; /* Bo góc */
+  }
+  .cv-item img {
+    width: 100px; /* Chiều rộng ảnh */
+    height: auto; /* Chiều cao tự động */
+    float: left; /* Float ảnh sang trái */
+    margin-right: 20px; /* Khoảng cách từ ảnh đến text */
+  }
+  .cv-item a {
+    color: #333; /* Màu chữ */
+    text-decoration: none; /* Loại bỏ gạch chân */
+    font-size: 18px; /* Kích thước font */
+  }
+
+  .cv-item:hover {
+    background-color: #04aa6d;
+    text-decoration: underline; /* Gạch chân khi hover */
+  }
+</style>
+<div class="container">
+  <h2>Danh Sách CV</h2>
+  <a
+    href="{% url 'form' %}"
+    style="
+      display: inline-block;
+      background-color: #04aa6d;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+    "
+    >Trang Chủ</a
+  >
+  <ul class="cv-list">
+    {% for cv in cvs %}
+    <li class="cv-item">
+      <img src="{{cv.image.url}}" alt="CV Image" />
+      <a href="{% url 'cv-detail' cv.id %}"
+        >{{ cv.title }} - {{ cv.created_at }}</a
+      >
+      <!-- Nút Xóa -->
+      <div class="xoa">
+        <a
+          href="{% url 'cv-delete' cv.id %}"
+          onclick="return confirm('Bạn có chắc chắn muốn xóa CV này không?');"
+          style="color: red; margin-left: 20px"
+          >Xóa</a
+        >
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

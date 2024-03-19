@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from gendercv.models import CV
 from django.urls import reverse
@@ -46,13 +46,14 @@ def submit_form(request):
         school = request.POST.get('school')
         gpa = request.POST.get('gpa')
         specialized = request.POST.get('specialized')
-        print(name, role, title, email, github, phone, code, tech, image)  # In ra các giá trị của các trường
-        # Tiếp tục xử lý dữ liệu và lưu hình ảnh theo yêu cầu của bạn
-
-        cv = CV.objects.all()
+        otp = request.POST.get('otp')
+        # print(name, role, title, email, github, phone, code, tech, image, otp)  # In ra các giá trị của các trường
         
-        if cv:
-            cv.delete()
+
+        # cv = CV.objects.all()
+        
+        # if cv:
+        #     cv.delete()
         cv = CV.objects.create(
                 name=name,
                 role=role,
@@ -67,17 +68,18 @@ def submit_form(request):
                 school=school,
                 gpa = gpa,
                 specialized = specialized,
+                otp = otp
             )
         cv.save()
-    return HttpResponseRedirect(reverse('gencv', args = [2] ))
+    return HttpResponseRedirect(reverse('gencv', args = [int(otp)] ))
 
 
 
 def form(request):
-    return render(request, 'gendercv/form.html', )
+    return render(request, 'gendercv/form2.html', )
 
 def gencv(request, num):
-    data_cv = CV.objects.all()[0]
+    data_cv = CV.objects.order_by('-id').first()
     if num == 1:
         return render(request, 'gendercv/cv1.html',  {
             "data_cv": data_cv,
@@ -85,3 +87,30 @@ def gencv(request, num):
         )
     else: 
         return render(request, 'gendercv/cv2.html',  {"data_cv":data_cv})
+    
+
+
+def list_cv(request):
+    cvs = CV.objects.all()  
+    return render(request, 'gendercv/cv_list.html', {'cvs': cvs})
+
+
+
+
+def cv_detail(request, cv_id):
+    cv = get_object_or_404(CV, pk=cv_id)  
+    if cv.otp == 1:
+       
+        return render(request, 'gendercv/cv1.html',  {
+            "data_cv": cv,
+           }
+        )
+    else: 
+        return render(request, 'gendercv/cv2.html',  {"data_cv":cv})
+    
+
+def cv_delete(request, cv_id):
+    cv = get_object_or_404(CV, pk=cv_id)
+    cv.delete()
+    return HttpResponseRedirect(reverse('list-cv'))
+

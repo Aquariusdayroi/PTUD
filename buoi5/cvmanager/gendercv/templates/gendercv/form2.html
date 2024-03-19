@@ -1,0 +1,160 @@
+{% extends "index.html" %} {% load static %} {% block css-file%} <link
+rel="stylesheet" href={% static "gendercv\css\form2.css" %} /> {% endblock %}
+{%block content %}
+
+<div class="container">
+  <header>
+    <h1 id="title">Nhập các thông tin của bạn để tạo cv</h1>
+    <p id="description">
+      Cảm ơn bạn đã dành thời gian giúp chúng tôi cải thiện nền tảng
+    </p>
+    <div style="text-align: center">
+      <a href="{% url 'list-cv' %}">
+        <button
+          style="
+            background-color: orange;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+          "
+        >
+          Xem Tất Cả CV
+        </button>
+      </a>
+    </div>
+  </header>
+  <main>
+    <form
+      id="survey-form"
+      action="{% url 'submit-form' %}"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <label id="name-label" for="name"
+        >Họ và tên<input
+          id="name"
+          name="name"
+          type="text"
+          placeholder="Nhập họ tên của bạn"
+          required
+      /></label>
+      <label id="name-label" for="name"
+        >Vị trí<input
+          id="role"
+          name="role"
+          type="text"
+          placeholder="Nhập vị trí của bạn"
+          required
+      /></label>
+      <label id="name-label" for="name"
+        >Trường học<input
+          id="school"
+          name="school"
+          type="text"
+          placeholder="Tên trường của bạn"
+          required
+      /></label>
+      <label id="name-label" for="name"
+        >Chuyên ngành<input
+          id="specialized"
+          name="specialized"
+          type="text"
+          placeholder="Chuyên ngành của bạn"
+          required
+      /></label>
+      <label id="name-label" for="name"
+        >GPA<input
+          id="gpa"
+          name="gpa"
+          type="text"
+          placeholder="Nhập gpa của bạn"
+          required
+      /></label>
+      <label id="email-label" for="email"
+        >Email<input
+          id="email"
+          name="email"
+          type="Email"
+          placeholder="Nhập email của bạn"
+          required
+      /></label>
+      <label id="number-label" for="number"
+        >Số điện thoại<input
+          id="number"
+          name="phone"
+          type="number"
+          placeholder="Nhập số điện thoại của bạn"
+      /></label>
+      <label id="name-label" for="name"
+        >Link github<input
+          id="name"
+          name="github"
+          type="text"
+          placeholder="link github"
+          required
+      /></label>
+      <label for="note">
+        Giới thiệu bản thân
+        <textarea
+          id="note"
+          name="title"
+          placeholder="giới thiệu bản thân..."
+          rows="7"
+        ></textarea>
+      </label>
+      <label for="note">
+        Programmings/Frameworks
+        <textarea
+          id="code"
+          name="code"
+          placeholder=" Programmings/Frameworks..."
+          rows="7"
+        ></textarea>
+      </label>
+      <label for="note">
+        Techniques/Tool
+        <textarea
+          id="tech"
+          name="tech"
+          placeholder="Techniques/Tool..."
+          rows="7"
+        ></textarea>
+      </label>
+
+      <label for="note">
+        Thành Tích
+        <textarea
+          id="note"
+          name="honorrs"
+          placeholder="thành tích bản thân..."
+          rows="7"
+        ></textarea>
+      </label>
+      <label id="name-label" for="name"
+        >Hình ảnh<input id="image" name="image" type="file" required
+      /></label>
+
+      <fieldset>
+        <legend>Chọn style cv mong muốn</legend>
+        <label for="yes"
+          ><input id="yes" type="radio" name="otp" value="1" /> Đen ánh
+          Cam</label
+        >
+        <label for="maybe "
+          ><input id="maybe" type="radio" name="otp" value="2" /> Xanh
+          Trắng</label
+        >
+      </fieldset>
+      {% csrf_token %}
+      <button id="submit">Submit</button>
+    </form>
+  </main>
+</div>
+
+{%endblock %}

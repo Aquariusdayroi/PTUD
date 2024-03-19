@@ -15,6 +15,6 @@ class CV(models.Model):
     code = models.TextField()
     tech = models.TextField()
     image = models.ImageField(upload_to='cv_images/')  # Thêm trường để lưu trữ hình ảnh
-
+    otp = models.IntegerField(default = 0)
     def __str__(self):
         return self.name
